@@ -1,27 +1,15 @@
-import java.io.*;
-
- // Java program to implement
- // a Singly Linked List
  class LinkedList {
- 
-     Node head; // head of list
- 
-     // Linked list Node.
-     // This inner class is made static
-     // so that main() can access it
+     Node head; 
      static class Node {
- 
          int data;
          Node next;
- 
-         // Constructor
          Node(int d)
          {
              data = d;
              next = null;
          }
      }
-     public static LinkedList insert(LinkedList list, int data)
+     public static LinkedList insertLast(LinkedList list, int data)
      {
          Node new_node = new Node(data);
          new_node.next = null;
@@ -34,50 +22,50 @@ import java.io.*;
              while (last.next != null) {
                  last = last.next;
              }
- 
-             // Insert the new_node at last node
              last.next = new_node;
          }
  
-         // Return the list by head
          return list;
      }
  
-     // Method to print the LinkedList.
+     public static int isEmpty(LinkedList list){
+        if (list.head==null) {
+            return 1 ;
+        }
+        else{
+            return 0;}
+     }
      public static void printList(LinkedList list)
      {
          Node currNode = list.head;
      
          System.out.print("LinkedList: ");
      
-         // Traverse through the LinkedList
          while (currNode != null) {
-             // Print the data at current node
              System.out.print(currNode.data + " ");
      
-             // Go to next node
              currNode = currNode.next;
          }
      }
-     
-     // Driver code
+     public static void insertFirst(){
+
+     }
      public static void main(String[] args)
      {
-         LinkedList list = new LinkedList();
- 
-         // Insert the values
-         list = insert(list, 1);
-         list = insert(list, 2);
-         list = insert(list, 3);
-         list = insert(list, 4);
-         list = insert(list, 5);
-         list = insert(list, 6);
-         list = insert(list, 7);
-         list = insert(list, 8);
- 
-         // Print the LinkedList
+        LinkedList list = new LinkedList();
+        for (int i = 0; i < 10; i++) {
+            list = insertLast(list, i) ;
+        }
+        int x = isEmpty(list) ;
+        if (x==1) {
+            System.out.print("List is empty\n") ;
+        }
+        else{
+            System.out.print("List is not empty\n");
+        }
+        
          printList(list);
-     }
+     }  
  }
  
  
