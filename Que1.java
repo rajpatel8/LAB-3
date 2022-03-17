@@ -1,31 +1,83 @@
-import org.w3c.dom.Node;
+import java.io.*;
 
-/**
- * InsertFirst() to insert an element at the beginning of the list
- * Insert the data at given position and call the function and debug your program.
- * insertLast() to insert an element at the end of the list.
- * isEmpty() and check if the list is empty or not.
- * Iteratively implement functions for deletions and check your program. Sorted insertion
- * isLastElement()
- */
+ // Java program to implement
+ // a Singly Linked List
+ class LinkedList {
  
- /**
-  * Que1
-  */
- public class Que1 {
-     public static void main(String[] args) {
-         
+     Node head; // head of list
+ 
+     // Linked list Node.
+     // This inner class is made static
+     // so that main() can access it
+     static class Node {
+ 
+         int data;
+         Node next;
+ 
+         // Constructor
+         Node(int d)
+         {
+             data = d;
+             next = null;
+         }
+     }
+     public static LinkedList insert(LinkedList list, int data)
+     {
+         Node new_node = new Node(data);
+         new_node.next = null;
+ 
+         if (list.head == null) {
+             list.head = new_node;
+         }
+         else {
+             Node last = list.head;
+             while (last.next != null) {
+                 last = last.next;
+             }
+ 
+             // Insert the new_node at last node
+             last.next = new_node;
+         }
+ 
+         // Return the list by head
+         return list;
+     }
+ 
+     // Method to print the LinkedList.
+     public static void printList(LinkedList list)
+     {
+         Node currNode = list.head;
+     
+         System.out.print("LinkedList: ");
+     
+         // Traverse through the LinkedList
+         while (currNode != null) {
+             // Print the data at current node
+             System.out.print(currNode.data + " ");
+     
+             // Go to next node
+             currNode = currNode.next;
+         }
+     }
+     
+     // Driver code
+     public static void main(String[] args)
+     {
+         LinkedList list = new LinkedList();
+ 
+         // Insert the values
+         list = insert(list, 1);
+         list = insert(list, 2);
+         list = insert(list, 3);
+         list = insert(list, 4);
+         list = insert(list, 5);
+         list = insert(list, 6);
+         list = insert(list, 7);
+         list = insert(list, 8);
+ 
+         // Print the LinkedList
+         printList(list);
      }
  }
-
- /**
-  * ll
-  */
-  class ll {
  
-     static class node{
-         int data ;
-         Node next ;
-         void Node(int d) {data=d; next = null ;}
-     }
- }
+ 
