@@ -63,8 +63,7 @@
         else{
             System.out.print("List is not empty\n");
         }
-        
-         printList(list);
+         printList(list);   
      }  
  }
  
