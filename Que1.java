@@ -37,11 +37,8 @@
         return;
     }
  
-    /* 2. Allocate the Node &
-    3. Put in the data*/
     Node new_node = new Node(new_data);
  
-    /* 4. Make next of new Node as next of prev_node */
     new_node.next = prev_node.next;
  
     /* 5. make next of prev_node as new_node */
