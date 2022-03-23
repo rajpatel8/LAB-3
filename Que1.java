@@ -30,27 +30,23 @@
      
      public void insertAfter(Node prev_node, int new_data)
     {
-    /* 1. Check if the given Node is null */
     if (prev_node == null) {
         System.out.println(
             "The given previous node cannot be null");
         return;
-    }
- 
+    } 
     Node new_node = new Node(new_data);
  
     new_node.next = prev_node.next;
  
-    /* 5. make next of prev_node as new_node */
     prev_node.next = new_node;
     }
-
-     public static int isEmpty(LinkedList list){
+     public static Boolean isEmpty(LinkedList list){
         if (list.head==null) {
-            return 1 ;
+            return true ;
         }
         else{
-            return 0;}
+            return false;}
      }
      public static void printList(LinkedList list)
      {
@@ -64,24 +60,96 @@
              currNode = currNode.next;
          }
      }
-     public static void insertFirst(){
+     public void push(int new_data)
+    {
+        Node new_node = new Node(new_data);
+ 
+        new_node.next = head;
+ 
+        head = new_node;
+    }
+     static Node removeLastNode(Node head)
+    {
+        if (head == null)
+            return null;
+ 
+        if (head.next == null) {
+            return null;
+        }
+ 
+        Node second_last = head;
+        while (second_last.next.next != null)
+            second_last = second_last.next;
+ 
+        second_last.next = null;
+ 
+        return head;
+    }
+    public int getLast() throws Exception
+    {
+        // Throws an Exception if the List is empty
+        if (head == null) {
+            throw new Exception(
+                "No elements found in Linked List");
+        }
+ 
+        Node temp = head;
+ 
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+ 
+        return temp.data;
+    }
 
-     }
-     public static void main(String[] args)
+     public void sortList()
+    {
+ 
+        Node current = head, index = null;
+ 
+        int temp;
+ 
+        if (head == null) {
+            return;
+        }
+        else {
+            while (current != null) {
+                index = current.next; 
+                while (index != null) {
+                    if (current.data > index.data) {
+                        temp = current.data;
+                        current.data = index.data;
+                        index.data = temp;
+                    }
+                    index = index.next;
+                }
+                current = current.next;
+            }
+        }
+    }
+     public static void main(String[] args) throws Exception
      {
         LinkedList list = new LinkedList();
         for (int i = 0; i < 10; i++) {
             list = insertLast(list, i) ;
         }
-        int x = isEmpty(list) ;
-        if (x==1) {
-            System.out.print("List is empty\n") ;
+        printList(list);   
+        
+        if (isEmpty(list)==true) {
+            System.out.print("\nList is empty\n");
         }
         else{
-            System.out.print("List is not empty\n");
+            System.out.print("\nList is not empty\n");
         }
-         printList(list);   
+        int i =10;  
+        list.sortList();
+        while ( i  > 0) {
+            removeLastNode(list.head);
+            printList(list);
+            System.out.print("\n");
+            i--;
+        }         
+        int a = list.getLast();
+        System.out.println("Last element is " + a);
      }  
  }
-
- 
